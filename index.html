@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    /> 
+    <title>Paint 3000</title>
+  </head>
+  <body>
+    <div class="eraserTmp"></div>
+    <div class = "rectTmpField"> 
+      <div class="rectTmp"></div>
+      <div class = "lineTmp"></div>
+
+        <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
+     </svg> 
+    </div>
+    <div class="nav">
+      <div class="tools">
+        <input
+          type="range"
+          oninput="curRange()"
+          onchange="curRangeStop()"
+          class="myrange"
+          min="1"
+          max="100"
+          step="1"
+          value="50"
+        />
+        <input name="Color Picker" value="#ffffff" class="color-picker" type="color" />
+        <div class="size-round"></div>
+        <p><input type="button" class="brush" /></p>
+        <p><input type="button" class="line" value="Линия" /></p>
+        <p><input type="button" class="rectangle" value="Прямоугольник" /></p>
+        <p><input type="button" class="eraser" value=" Ластик" /></p>
+        <p><input type="button" class="clearButton" value=" Нажми меня нежно " /></p>
+      </div>
+      <span class="refs">
+        <a class="fa fa-vk" target="_blank" href="https://vk.com/kasquad_l"></a>
+      </span>
+    </div>
+    <!-- <div class = "tmpRect"></div> -->
+    <div class="drawing-field"></div>
+    <canvas> </canvas>
+  </body>
+  <script src = "script.js"></script>
+</html>

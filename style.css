@@ -1,0 +1,144 @@
+html {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  width: 100%;
+  padding-left: 0;
+}
+canvas {
+  z-index: 0;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  background-color: #282828;
+  background-image: url(/BG.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.drawing-field {
+  background-color: transparent;
+  background-size: 15%;
+  padding: 0 0;
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  z-index: 2;
+}
+.nav {
+  display: flex;
+  position: absolute;
+  margin-right: auto;
+  margin-left: 2px;
+  width: 100%;
+  padding-top: 1px;
+  background-color: rgb(80, 80, 80);
+  z-index: 3;
+}
+
+.tools {
+  display: flex;
+  size: 0.8;
+  position: relative;
+  padding-left: 20px;
+  padding-bottom: 15px;
+  border-radius: 5px;
+  border: 3px solid rgb(172, 172, 172);
+  margin: 0;
+  margin-right: auto;
+  height: 30px;
+  padding-bottom: 25px;
+  z-index: 3;
+}
+.brush {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 0;
+  margin-top: 0;
+  border-radius: 50%;
+  border-color: transparent;
+}
+.brush :hover {
+  border-color: rgb(255, 0, 0);
+}
+
+.tools input {
+  margin-right: 30px;
+}
+
+.tools .color-picker {
+  margin-top: 1rem;
+}
+
+.myrange {
+  margin-top: 25px;
+}
+.refs {
+  margin-top: 5px;
+  margin-right: 45px;
+  font-size: 2rem;
+  text-decoration: none;
+  margin: auto 40px;
+}
+
+.fa-vk {
+  text-decoration: none;
+  color: rgb(53, 158, 255);
+}
+
+.size-round {
+  position: absolute;
+  transform-origin: 50% 50%;
+  width: 30px;
+  height: 30px;
+  background-color: azure;
+  margin-right: 30px;
+  margin-top: 75px;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.eraserTmp {
+  position: absolute;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(0, 0, 0);
+  margin-top: 100px;
+  opacity: 50%;
+  margin: 0 0;
+  z-index: 1;
+}
+
+.rectTmpField {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.rectTmp {
+  border: 4px solid rgb(0, 0, 0);
+  position: absolute;
+  background-repeat: no-repeat;
+}
+
+.lineTmp {
+  position: absolute;
+  display: flex;
+  /* background-image: url('line.png') no-repeat; */
+  background-size: 100% 100%;
+  background-image: url('ll.png');
+  background-repeat: no-repeat;
+  z-index: 10;
+}
+.lineTmpVisual {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}
+
+/* background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 10 10'> <path d='M1 0 L0 100 L100 100' fill='red' /></svg>"); */

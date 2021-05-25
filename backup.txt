@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <title>Paint 3000</title>
+</head>
+<body>
+    <div class = "drawing-field">
+        <div class = "nav">
+            <span class = "tools">
+                <input type="range" oninput="curRange()" onchange = "curRangeStop()" class = "myrange" min="1" max="100" step="1" value="50">   
+                <div class = "size-round"></div>    
+                <p><input type="button" class = "brush" ></p>
+                <p><input type="button" class = "eraser" value=" Ластик"></p>
+                    <p><input type="button" class = "rectangle" value="Прямоугольник"></p>
+                    <p><input type="button" class = "clearButton" value=" Нажми меня нежно "></p>
+                    <input name="Color Picker" value = "#ffffff"  class = "color-picker" type="color"/>
+            
+                </span>
+                <span class = "refs">
+                    <a class = "fa fa-vk" target="_blank" href = "https://vk.com/kasquad_l"></a>
+                </span>
+            </div>
+            
+            <canvas>
+            </canvas>
+        </div>
+</body>
+<script src ="script.js"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////
+var canv = document.querySelector("canvas");
+var ctx = canv.getContext("2d");
+const doublePi = 2*Math.PI;
+canv.width = window.innerWidth;
+canv.height = window.innerHeight;
+
+//////////////////////////////
+var curTool = "brush";
+var brush = document.querySelector(".brush");
+var eraser = document.querySelector(".eraser");
+var rectangle = document.querySelector(".rectangle");
+var sizeRound = document.querySelector(".size-round");
+sizeRound.style.backgroundColor = "transparent";
+
+
+brush.addEventListener("click" , function(){
+    curTool  = "brush";
+})
+
+eraser.addEventListener("click",function(){
+    curTool = "eraser";
+} )
+
+rectangle.addEventListener("click" , function(){
+    curTool = "rectangle";
+})
+
+
+
+
+//////////////////////////////
+var colorPicker = document.querySelector(".color-picker");
+colorPicker.addEventListener("change", function(){
+    ctx.fillStyle = this.value;
+    ctx.strokeStyle = this.value;
+})
+ctx.fillStyle = colorPicker.value;
+ctx.strokeStyle = colorPicker.value;
+//////////////////////////////
+var range = document.querySelector(".myrange");
+var brushSize = range.value;
+
+
+range.addEventListener("change" ,function(){
+    brushSize = this.value;
+    ctx.lineWidth = brushSize;
+    // ctx.arc(400 ,500 ,50,6.28);
+})
+
+function curRange() {
+   
+    sizeRound.style.backgroundColor = colorPicker.value;    
+    sizeRound.style.height = range.value + "px";
+    sizeRound.style.width = range.value + "px";
+
+   
+    
+     
+ }
+
+
+ function curRangeStop(){
+    sizeRound.style.backgroundColor = "transparent";
+    
+ }
+
+ctx.lineWidth = brushSize;
+isMouseDown = false;
+
+
+canv.addEventListener("mousedown" ,function(){
+    isMouseDown = true;
+})
+canv.addEventListener("mouseup" ,function(){
+    isMouseDown = false;
+    ctx.beginPath();
+})
+let y = canv.getBoundingClientRect().y;
+canv.addEventListener("mousemove" , function(e){
+    console.log(curTool);
+    if(isMouseDown){
+    switch (curTool){
+        case "brush":
+        ctx.globalCompositeOperation = "source-over";
+        BrushEraser(e);
+        break;
+        case "eraser":
+        ctx.globalCompositeOperation = "destination-out";
+        BrushEraser(e);
+        break;
+        case "rectangle":``
+        ctx.strokeRect(e.clientX , e.clientY - y, 50 , 50)
+        
+        break;
+    }
+    
+    }
+})
+
+function BrushEraser(e){
+    ctx.lineTo(e.clientX , e.clientY - y);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.arc(e.clientX , e.clientY - y,brushSize/2,0,doublePi);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(e.clientX , e.clientY - y);
+}
+
+///////////////////////////////////////
+
+var clearButton  = document.querySelector(".clearButton");
+clearButton.addEventListener("click" , function (){
+ctx.clearRect(0 , 0, canv.width , canv.height);
+})
+
+
+
+
+
+////////////////////////////////
